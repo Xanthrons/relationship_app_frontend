@@ -1,0 +1,44 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+
+@layer base {
+  html {
+    transition: background-color 400ms ease, color 400ms ease;
+  }
+
+  body {
+    transition: background-color 400ms ease, color 400ms ease;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition:
+      background-color 400ms ease,
+      border-color 400ms ease,
+      color 400ms ease,
+      fill 400ms ease,
+      stroke 400ms ease,
+      box-shadow 400ms ease;
+  }
+}
+
+
+.gradient-transition {
+  transition: background 600ms ease;
+}
+.capture-safe {
+  color: rgb(30, 41, 59) !important; /* Slate 800 */
+  background-color: #ffffff !important;
+}
+
+.dark .capture-safe {
+  color: #ffffff !important;
+  background-color: #0f172a !important; /* Slate 900 */
+}
+
+/* input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px transparent inset;
+    transition: background-color 5000s ease-in-out 0s;
+} */
