@@ -64,7 +64,7 @@ const Onboarding = () => {
         const res = await API.post("/relationship/onboard-creator", formData);
         setInviteData({ code: res.data.inviteCode, link: res.data.inviteLink });
         setShowInviteModal(true);
-        await checkAuth();
+        // await checkAuth();
       }
     } catch (err) {
       console.error(err);
@@ -278,11 +278,14 @@ const Onboarding = () => {
       </div>
 
       {showInviteModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-[#08080a]/80 backdrop-blur-sm">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-[#08080a]/90 backdrop-blur-md">
           <InviteModal
             inviteCode={inviteData.code}
             inviteLink={inviteData.link}
-            onClose={() => navigate("/dashboard")}
+            onClose={async () => {
+              await checkAuth(); // ✅ NOW we trigger the redirect
+              navigate("/dashboard");
+            }}
           />
         </div>
       )}
