@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-// The root URL for Sockets - Keeping your Render URL
-export const SOCKET_URL = 'https://relationship-app-backend-gcil.onrender.com';
+// ✅ Use Environment Variable for Production, fallback to localhost for Dev
+export const SOCKET_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 const API = axios.create({
     baseURL: `${SOCKET_URL}/api`, 
@@ -22,7 +22,7 @@ API.interceptors.response.use(
     (error) => {
         if (error.response?.status === 401) {
             localStorage.removeItem('token');
-            // window.location.href = '/login';
+            // Logic to redirect to login could go here
         }
         return Promise.reject(error);
     }
